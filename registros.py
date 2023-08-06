@@ -30,6 +30,14 @@ def iniciarSesion():
         print(f"\n***** Bienvenido {nombre} *****\n")
 
 
+# Funcion para mostrar los usuarios registrados
+def mostrarUsuarios():
+    print("*** Los usuarios actuales son: ***\n")
+    for usuario in baseDeDatos:
+        print(usuario["Nombre"])
+
+    print("\n *** fin de la lista de usuarios *** \n")
+
 # inicio del programa principal
 
 # definimos la "base de datos" para almacenar nuestros usuarios
@@ -40,7 +48,6 @@ if(not open("./data.txt" , "r")):
     f = open("./data.txt" , "w")
     f.write("")
     f.close()
-
 
 # buscamos la base de datos y la almacenamos en texto plano
 f = open("./data.txt", "r")
@@ -62,11 +69,15 @@ control = 1
 
 while control != 0:
     # diferentes opciones dependiendo el numero ingresado por el usuario
-    control = int(input("Para registrar un nuevo usuario presiona 1 \nPara iniciar sesion presiona 2 \nPara salir presiona 0\n"))
+    control = int(input("Para registrar un nuevo usuario presiona 1 \nPara iniciar sesion presiona 2 \nPara mostrar los usuarios registrados presiona 3 \nPara salir presiona 0\n"))
     if control == 1:
         registrarUsuario()
-    if control == 2:
+    elif control == 2:
         iniciarSesion()
+    elif control == 3:
+        mostrarUsuarios()
+    else:
+        print("\n !!! Opcion no valida, vuelve a intentarlo !!! \n")
 
     # Escribimos cualquier cambio hecho en la base de datos
     f = open("./data.txt" , "w")
